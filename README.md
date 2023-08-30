@@ -7,7 +7,9 @@ Architecture:
 
 <img src="pictures/vcluster-architecture.svg?raw=true" width="1000">
 
+Why Virtual Kubernetes Clusters?
 
+<img src="pictures/vcluster-comparison.png?raw=true" width="800">
 
 ### Install
 
