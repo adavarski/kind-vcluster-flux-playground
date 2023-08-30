@@ -86,7 +86,7 @@ VCLUSTER ?= $(LOCALBIN)/vcluster
 ## Tool Versions
 KIND_VERSION ?= v0.20.0
 FLUX_VERSION ?= 2.0.1
-VCLUSTER_VERSION ?= v0.15.2
+VCLUSTER_VERSION ?= v0.15.7
 
 .PHONY: kind
 kind: $(KIND) ## Download kind locally if necessary.
