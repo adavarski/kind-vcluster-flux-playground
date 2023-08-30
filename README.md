@@ -138,6 +138,26 @@ kube-node-lease   Active   6m10s
 
 ```bash
 make uninstall
+
+Example Output:
+
+$ make uninstall
+Switched to context "kind-host-cluster".
+/home/davar/kind-vcluster-flux-playground/bin/vcluster delete vcluster-a -n vcluster-a
+info   Stopping docker proxy...
+info   Delete vcluster vcluster-a...
+done √ Successfully deleted virtual cluster vcluster-a in namespace vcluster-a
+done √ Successfully deleted virtual cluster pvc data-vcluster-a-0 in namespace vcluster-a
+/home/davar/Downloads/kind-vcluster-flux-playground/bin/vcluster delete vcluster-b -n vcluster-b
+info   Stopping docker proxy...
+info   Delete vcluster vcluster-b...
+done √ Successfully deleted virtual cluster vcluster-b in namespace vcluster-b
+done √ Successfully deleted virtual cluster pvc data-vcluster-b-0 in namespace vcluster-b
+GOBIN=/home/davar/Downloads/kind-vcluster-flux-playground/bin go install sigs.k8s.io/kind@v0.20.0
+/home/davar/Downloads/kind-vcluster-flux-playground/bin/kind delete cluster --name host-cluster
+Deleting cluster "host-cluster" ...
+Deleted nodes: ["host-cluster-worker2" "host-cluster-worker" "host-cluster-control-plane"]
+
 ```
 
 TODO: fix coredns for vcusters
