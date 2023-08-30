@@ -103,6 +103,19 @@ NAMESPACE     NAME                       READY   STATUS             RESTARTS    
 default       nginx-748c667d99-84cl7     1/1     Running            0               5m14s
 kube-system   coredns-56bfc489cf-ggh5b   0/1     CrashLoopBackOff   6 (3m19s ago)   9m28s
 
+$ kubectl get events -n kube-system
+LAST SEEN   TYPE      REASON              OBJECT                          MESSAGE
+21m         Normal    ApplyingManifest    addon/rolebindings              Applying manifest at "/data/server/manifests/rolebindings.yaml"
+21m         Normal    AppliedManifest     addon/rolebindings              Applied manifest at "/data/server/manifests/rolebindings.yaml"
+21m         Normal    ScalingReplicaSet   deployment/coredns              Scaled up replica set coredns-56bfc489cf to 1
+21m         Normal    SuccessfulCreate    replicaset/coredns-56bfc489cf   Created pod: coredns-56bfc489cf-ggh5b
+21m         Normal    Scheduled           pod/coredns-56bfc489cf-ggh5b    Successfully assigned kube-system/coredns-56bfc489cf-ggh5b to host-cluster-worker2
+21m         Normal    Pulling             pod/coredns-56bfc489cf-ggh5b    Pulling image "coredns/coredns"
+20m         Normal    Pulled              pod/coredns-56bfc489cf-ggh5b    Successfully pulled image "coredns/coredns" in 2.841619166s (9.026249629s including waiting)
+19m         Normal    Pulled              pod/coredns-56bfc489cf-ggh5b    Container image "coredns/coredns" already present on machine
+19m         Normal    Created             pod/coredns-56bfc489cf-ggh5b    Created container coredns
+19m         Normal    Started             pod/coredns-56bfc489cf-ggh5b    Started container coredns
+57s         Warning   BackOff             pod/coredns-56bfc489cf-ggh5b    Back-off restarting failed container coredns in pod coredns-56bfc489cf-ggh5b_vcluster-a(3dbd12b8-cb1c-4525-b4b1-db01095699d0)
 ./bin/vcluster disconnect
 
 $ ./bin/vcluster connect vcluster-b -n vcluster-b
