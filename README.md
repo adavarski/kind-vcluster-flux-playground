@@ -127,4 +127,6 @@ kube-node-lease   Active   6m10s
 make uninstall
 ```
 
+[Credits](https://github.com/mmontes11/vcluster-poc) 
+
 TODO: fix coredns for vcusters
