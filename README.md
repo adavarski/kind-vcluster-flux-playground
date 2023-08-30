@@ -1,6 +1,8 @@
 ## (WIP) kind + vcluster + flux multi-tenancy PoC
 [vcluster](https://www.vcluster.com/) + [flux](https://fluxcd.io/) multi-tenancy  PoC
 
+vcluster - Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster. It's cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces.
+
 Architecture:
 
 <img src="pictures/vcluster-architecture.svg?raw=true" width="1000">
