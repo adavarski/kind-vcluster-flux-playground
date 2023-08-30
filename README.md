@@ -168,6 +168,7 @@ Deleted nodes: ["host-cluster-worker2" "host-cluster-worker" "host-cluster-contr
 
 TODO: fix coredns for vcusters
 
+REF: https://github.com/loft-sh/vcluster
 
 [Credits](https://github.com/mmontes11/vcluster-poc) 
 
