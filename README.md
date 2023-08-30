@@ -98,6 +98,11 @@ kube-system       Active   4m48s
 default           Active   4m48s
 kube-public       Active   4m48s
 kube-node-lease   Active   4m48s
+$ kubectl get po --all-namespaces
+NAMESPACE     NAME                       READY   STATUS             RESTARTS        AGE
+default       nginx-748c667d99-84cl7     1/1     Running            0               5m14s
+kube-system   coredns-56bfc489cf-ggh5b   0/1     CrashLoopBackOff   6 (3m19s ago)   9m28s
+
 ./bin/vcluster disconnect
 
 $ ./bin/vcluster connect vcluster-b -n vcluster-b
@@ -121,3 +126,5 @@ kube-node-lease   Active   6m10s
 ```bash
 make uninstall
 ```
+
+TODO: fix coredns for vcusters
