@@ -98,6 +98,7 @@ kube-system       Active   4m48s
 default           Active   4m48s
 kube-public       Active   4m48s
 kube-node-lease   Active   4m48s
+./bin/vcluster disconnect
 
 $ ./bin/vcluster connect vcluster-b -n vcluster-b
 info   Using vcluster vcluster-b load balancer endpoint: 172.18.0.211
@@ -110,7 +111,7 @@ default           Active   6m10s
 kube-system       Active   6m10s
 kube-public       Active   6m10s
 kube-node-lease   Active   6m10s
-
+./bin/vcluster disconnect
 
 
 ```
