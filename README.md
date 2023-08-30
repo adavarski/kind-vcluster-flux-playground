@@ -1,6 +1,12 @@
 ## (WIP) kind + vcluster + flux multi-tenancy PoC
 [vcluster](https://www.vcluster.com/) + [flux](https://fluxcd.io/) multi-tenancy  PoC
 
+Architecture:
+
+<img src="pictures/vcluster-architecture.svg?raw=true" width="1000">
+
+
+
 ### Install
 
 ```bash
