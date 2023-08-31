@@ -21,7 +21,6 @@ $ wget https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 $ sudo tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz
 
 file: ~/.profile 
-
 export PATH=$PATH:/usr/local/go/bin
 
 file ~/.bashrc
