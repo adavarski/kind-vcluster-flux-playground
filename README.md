@@ -11,6 +11,26 @@ Why Virtual Kubernetes Clusters?
 
 <img src="pictures/vcluster-comparison.png?raw=true" width="600">
 
+### Requirenments
+- Linux laptop/workstation
+- Go
+
+Go install mini-howto
+```
+$ wget https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
+$ sudo tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz
+
+file: ~/.profile 
+
+export PATH=$PATH:/usr/local/go/bin
+
+file ~/.bashrc
+export GOROOT=/usr/local/go
+export PATH=${GOROOT}/bin:${PATH}
+export GOPATH=$HOME/go
+export PATH=${GOPATH}/bin:${PATH}
+```
+
 ### Install
 
 ```bash
