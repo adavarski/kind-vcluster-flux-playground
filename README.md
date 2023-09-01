@@ -118,6 +118,12 @@ $ cat /etc/hosts|tail -n6
 # kind-vcluster-flux-playground
 172.17.0.200	tenant-b.traefik.local
 
+ ./bin/vcluster list
+
+ NAME         NAMESPACE    STATUS    CONNECTED   CREATED                          AGE      CONTEXT            
+ vcluster-a   vcluster-a   Running               2023-09-01 12:37:09 +0300 EEST   10m56s   kind-host-cluster  
+ vcluster-b   vcluster-b   Running               2023-09-01 12:37:08 +0300 EEST   10m57s   kind-host-cluster  
+
 
 ``` 
 
