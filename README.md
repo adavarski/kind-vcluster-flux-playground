@@ -190,6 +190,25 @@ default           Active   6m10s
 kube-system       Active   6m10s
 kube-public       Active   6m10s
 kube-node-lease   Active   6m10s
+
+$ kubectl get po --all-namespaces
+NAMESPACE     NAME                       READY   STATUS             RESTARTS      AGE
+default       nginx-748c667d99-qk9qz     1/1     Running            0             8m1s
+kube-system   coredns-56bfc489cf-27s5h   0/1     CrashLoopBackOff   7 (50s ago)   11m
+
+$ kubectl get events -n kube-system
+LAST SEEN   TYPE      REASON              OBJECT                          MESSAGE
+13m         Normal    ApplyingManifest    addon/rolebindings              Applying manifest at "/data/server/manifests/rolebindings.yaml"
+13m         Normal    AppliedManifest     addon/rolebindings              Applied manifest at "/data/server/manifests/rolebindings.yaml"
+13m         Normal    ScalingReplicaSet   deployment/coredns              Scaled up replica set coredns-56bfc489cf to 1
+13m         Normal    SuccessfulCreate    replicaset/coredns-56bfc489cf   Created pod: coredns-56bfc489cf-27s5h
+13m         Normal    Scheduled           pod/coredns-56bfc489cf-27s5h    Successfully assigned kube-system/coredns-56bfc489cf-27s5h to host-cluster-worker2
+12m         Warning   Unhealthy           pod/coredns-56bfc489cf-27s5h    Readiness probe failed: Get "http://10.244.2.12:8181/ready": dial tcp 10.244.2.12:8181: connect: connection refused
+12m         Normal    Pulled              pod/coredns-56bfc489cf-27s5h    Container image "coredns/coredns" already present on machine
+12m         Normal    Created             pod/coredns-56bfc489cf-27s5h    Created container coredns
+12m         Normal    Started             pod/coredns-56bfc489cf-27s5h    Started container coredns
+2m55s       Warning   BackOff             pod/coredns-56bfc489cf-27s5h    Back-off restarting failed container coredns in pod coredns-56bfc489cf-27s5h_vcluster-88007f70-942ea1d0(25e71e67-65fb-40be-af45-d9e6eb8cf115)
+
 ./bin/vcluster disconnect
 
 
