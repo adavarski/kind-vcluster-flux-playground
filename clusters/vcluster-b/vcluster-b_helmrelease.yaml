@@ -16,10 +16,10 @@ spec:
       type: LoadBalancer
     syncer:
       serviceAnnotations:
-        metallb.universe.tf/loadBalancerIPs: 172.18.0.211
+        metallb.universe.tf/loadBalancerIPs: 172.17.0.211
       extraArgs:
       - --tls-san=172.18.0.211
-      - --out-kube-config-server=https://172.18.0.211
+      - --out-kube-config-server=https://172.17.0.211
     multiNamespaceMode:
       enabled: true
     sync:
