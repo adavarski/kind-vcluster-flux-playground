@@ -137,22 +137,23 @@ Example Output:
 $ make vctx
 Switched to context "kind-host-cluster".
 /home/davar/Downloads/kind-vcluster-flux-playground/bin/vcluster connect vcluster-a -n vcluster-a
-info   Waiting for vcluster to come up...
-info   Using vcluster vcluster-a load balancer endpoint: 172.18.0.210
+info   Using vcluster vcluster-a load balancer endpoint: 172.17.0.210
 done √ Switched active kube context to vcluster_vcluster-a_vcluster-a_kind-host-cluster
 - Use `vcluster disconnect` to return to your previous kube context
 - Use `kubectl get namespaces` to access the vcluster
 /home/davar/Downloads/kind-vcluster-flux-playground/bin/vcluster connect vcluster-b -n vcluster-b
-info   Using vcluster vcluster-b load balancer endpoint: 172.18.0.211
+info   Using vcluster vcluster-b load balancer endpoint: 172.17.0.211
 done √ Switched active kube context to vcluster_vcluster-b_vcluster-b_kind-host-cluster
 - Use `vcluster disconnect` to return to your previous kube context
 - Use `kubectl get namespaces` to access the vcluster
 
+
 $ ./bin/vcluster connect vcluster-a -n vcluster-a
-info   Using vcluster vcluster-a load balancer endpoint: 172.18.0.210
+info   Using vcluster vcluster-a load balancer endpoint: 172.17.0.210
 done √ Switched active kube context to vcluster_vcluster-a_vcluster-a_kind-host-cluster
 - Use `vcluster disconnect` to return to your previous kube context
 - Use `kubectl get namespaces` to access the vcluster
+
 $ kubectl get namespaces
 NAME              STATUS   AGE
 kube-system       Active   4m48s
@@ -180,7 +181,7 @@ LAST SEEN   TYPE      REASON              OBJECT                          MESSAG
 ./bin/vcluster disconnect
 
 $ ./bin/vcluster connect vcluster-b -n vcluster-b
-info   Using vcluster vcluster-b load balancer endpoint: 172.18.0.211
+info   Using vcluster vcluster-b load balancer endpoint: 172.17.0.211
 done √ Switched active kube context to vcluster_vcluster-b_vcluster-b_kind-host-cluster
 - Use `vcluster disconnect` to return to your previous kube context
 - Use `kubectl get namespaces` to access the vcluster
@@ -208,7 +209,6 @@ LAST SEEN   TYPE      REASON              OBJECT                          MESSAG
 12m         Normal    Created             pod/coredns-56bfc489cf-27s5h    Created container coredns
 12m         Normal    Started             pod/coredns-56bfc489cf-27s5h    Started container coredns
 2m55s       Warning   BackOff             pod/coredns-56bfc489cf-27s5h    Back-off restarting failed container coredns in pod coredns-56bfc489cf-27s5h_vcluster-88007f70-942ea1d0(25e71e67-65fb-40be-af45-d9e6eb8cf115)
-
 ./bin/vcluster disconnect
 
 
