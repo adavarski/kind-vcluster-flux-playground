@@ -18,7 +18,7 @@ spec:
       serviceAnnotations:
         metallb.universe.tf/loadBalancerIPs: 172.17.0.211
       extraArgs:
-      - --tls-san=172.18.0.211
+      - --tls-san=172.17.0.211
       - --out-kube-config-server=https://172.17.0.211
     multiNamespaceMode:
       enabled: true
