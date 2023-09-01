@@ -99,6 +99,26 @@ Switched to context "kind-host-cluster".
 ✔ source-controller: deployment ready
 ✔ all components are healthy
 
+$ docker network inspect -f '{{.IPAM.Config}}' kind
+[{172.17.0.0/16  172.17.0.1 map[]} {fc00:f853:ccd:e793::/64  fc00:f853:ccd:e793::1 map[]}]
+$ grep -ri "172.17.0.2" *
+clusters/vcluster-a/vcluster-a_helmrelease.yaml:        metallb.universe.tf/loadBalancerIPs: 172.17.0.210
+clusters/vcluster-a/vcluster-a_helmrelease.yaml:      - --tls-san=172.17.0.210
+clusters/vcluster-a/vcluster-a_helmrelease.yaml:      - --out-kube-config-server=https://172.17.0.210
+clusters/vcluster-b/vcluster-b_helmrelease.yaml:        metallb.universe.tf/loadBalancerIPs: 172.17.0.211
+clusters/vcluster-b/vcluster-b_helmrelease.yaml:      - --tls-san=172.17.0.211
+clusters/vcluster-b/vcluster-b_helmrelease.yaml:      - --out-kube-config-server=https://172.17.0.211
+infrastructure/metallb/config/metallb_ipaddresspool.yaml:    - 172.17.0.200-172.17.0.220
+Makefile:TRAEFIK_IP ?= 172.17.0.200
+$ cat /etc/hosts|tail -n6
+# kind-vcluster-flux-playground
+172.17.0.200	traefik.local
+# kind-vcluster-flux-playground
+172.17.0.200	tenant-a.traefik.local
+# kind-vcluster-flux-playground
+172.17.0.200	tenant-b.traefik.local
+
+
 ``` 
 
 ### Configure vcluster contexts
