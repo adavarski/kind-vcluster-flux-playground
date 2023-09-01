@@ -28,6 +28,11 @@ export GOROOT=/usr/local/go
 export PATH=${GOROOT}/bin:${PATH}
 export GOPATH=$HOME/go
 export PATH=${GOPATH}/bin:${PATH}
+
+$ source ./.profile
+$ go version
+go version go1.19.2 linux/amd64
+
 ```
 
 ### Install
