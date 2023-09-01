@@ -13,6 +13,7 @@ Why Virtual Kubernetes Clusters?
 
 ### Requirenments
 - Linux laptop/workstation
+- Docker installed
 - Go
 
 Go install mini-howto
