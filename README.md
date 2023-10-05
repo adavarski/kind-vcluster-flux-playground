@@ -1,4 +1,4 @@
-## (WIP) kind + vcluster + flux multi-tenancy PoC
+## kind + vcluster + flux multi-tenancy PoC
 [vcluster](https://www.vcluster.com/) + [flux](https://fluxcd.io/) multi-tenancy  PoC
 
 vcluster - Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster. It's cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces.
@@ -119,12 +119,12 @@ $ cat /etc/hosts|tail -n6
 172.17.0.200	tenant-b.traefik.local
 
  ./bin/vcluster list
-
- NAME         NAMESPACE    STATUS    CONNECTED   CREATED                          AGE      CONTEXT            
- vcluster-a   vcluster-a   Running               2023-09-01 12:37:09 +0300 EEST   10m56s   kind-host-cluster  
- vcluster-b   vcluster-b   Running               2023-09-01 12:37:08 +0300 EEST   10m57s   kind-host-cluster  
-
-
+  
+       NAME    | NAMESPACE  | STATUS  | VERSION | CONNECTED |            CREATED             |  AGE   | PRO  
+  -------------+------------+---------+---------+-----------+--------------------------------+--------+------
+    vcluster-a | vcluster-a | Running | 0.16.0  |           | 2023-10-05 15:47:40 +0300 EEST | 17m21s |      
+    vcluster-b | vcluster-b | Running | 0.16.0  |           | 2023-10-05 15:47:40 +0300 EEST | 17m21s |      
+  
 ``` 
 
 ### Configure vcluster contexts
@@ -160,24 +160,12 @@ kube-system       Active   4m48s
 default           Active   4m48s
 kube-public       Active   4m48s
 kube-node-lease   Active   4m48s
-$ kubectl get po --all-namespaces
-NAMESPACE     NAME                       READY   STATUS             RESTARTS        AGE
-default       nginx-748c667d99-84cl7     1/1     Running            0               5m14s
-kube-system   coredns-56bfc489cf-ggh5b   0/1     CrashLoopBackOff   6 (3m19s ago)   9m28s
 
-$ kubectl get events -n kube-system
-LAST SEEN   TYPE      REASON              OBJECT                          MESSAGE
-21m         Normal    ApplyingManifest    addon/rolebindings              Applying manifest at "/data/server/manifests/rolebindings.yaml"
-21m         Normal    AppliedManifest     addon/rolebindings              Applied manifest at "/data/server/manifests/rolebindings.yaml"
-21m         Normal    ScalingReplicaSet   deployment/coredns              Scaled up replica set coredns-56bfc489cf to 1
-21m         Normal    SuccessfulCreate    replicaset/coredns-56bfc489cf   Created pod: coredns-56bfc489cf-ggh5b
-21m         Normal    Scheduled           pod/coredns-56bfc489cf-ggh5b    Successfully assigned kube-system/coredns-56bfc489cf-ggh5b to host-cluster-worker2
-21m         Normal    Pulling             pod/coredns-56bfc489cf-ggh5b    Pulling image "coredns/coredns"
-20m         Normal    Pulled              pod/coredns-56bfc489cf-ggh5b    Successfully pulled image "coredns/coredns" in 2.841619166s (9.026249629s including waiting)
-19m         Normal    Pulled              pod/coredns-56bfc489cf-ggh5b    Container image "coredns/coredns" already present on machine
-19m         Normal    Created             pod/coredns-56bfc489cf-ggh5b    Created container coredns
-19m         Normal    Started             pod/coredns-56bfc489cf-ggh5b    Started container coredns
-57s         Warning   BackOff             pod/coredns-56bfc489cf-ggh5b    Back-off restarting failed container coredns in pod coredns-56bfc489cf-ggh5b_vcluster-a(3dbd12b8-cb1c-4525-b4b1-db01095699d0)
+$ kubectl get po --all-namespaces
+NAMESPACE     NAME                       READY   STATUS    RESTARTS   AGE
+kube-system   coredns-68559449b6-cltc8   1/1     Running   0          16m
+default       nginx-77b4fdf86c-7lts5     1/1     Running   0          13m
+
 ./bin/vcluster disconnect
 
 $ ./bin/vcluster connect vcluster-b -n vcluster-b
@@ -185,6 +173,7 @@ info   Using vcluster vcluster-b load balancer endpoint: 172.17.0.211
 done √ Switched active kube context to vcluster_vcluster-b_vcluster-b_kind-host-cluster
 - Use `vcluster disconnect` to return to your previous kube context
 - Use `kubectl get namespaces` to access the vcluster
+
 $ kubectl get namespaces
 NAME              STATUS   AGE
 default           Active   6m10s
@@ -193,24 +182,11 @@ kube-public       Active   6m10s
 kube-node-lease   Active   6m10s
 
 $ kubectl get po --all-namespaces
-NAMESPACE     NAME                       READY   STATUS             RESTARTS      AGE
-default       nginx-748c667d99-qk9qz     1/1     Running            0             8m1s
-kube-system   coredns-56bfc489cf-27s5h   0/1     CrashLoopBackOff   7 (50s ago)   11m
+NAMESPACE     NAME                       READY   STATUS    RESTARTS   AGE
+kube-system   coredns-68559449b6-6m28q   1/1     Running   0          17m
+default       nginx-77b4fdf86c-9hrzh     1/1     Running   0          14m
 
-$ kubectl get events -n kube-system
-LAST SEEN   TYPE      REASON              OBJECT                          MESSAGE
-13m         Normal    ApplyingManifest    addon/rolebindings              Applying manifest at "/data/server/manifests/rolebindings.yaml"
-13m         Normal    AppliedManifest     addon/rolebindings              Applied manifest at "/data/server/manifests/rolebindings.yaml"
-13m         Normal    ScalingReplicaSet   deployment/coredns              Scaled up replica set coredns-56bfc489cf to 1
-13m         Normal    SuccessfulCreate    replicaset/coredns-56bfc489cf   Created pod: coredns-56bfc489cf-27s5h
-13m         Normal    Scheduled           pod/coredns-56bfc489cf-27s5h    Successfully assigned kube-system/coredns-56bfc489cf-27s5h to host-cluster-worker2
-12m         Warning   Unhealthy           pod/coredns-56bfc489cf-27s5h    Readiness probe failed: Get "http://10.244.2.12:8181/ready": dial tcp 10.244.2.12:8181: connect: connection refused
-12m         Normal    Pulled              pod/coredns-56bfc489cf-27s5h    Container image "coredns/coredns" already present on machine
-12m         Normal    Created             pod/coredns-56bfc489cf-27s5h    Created container coredns
-12m         Normal    Started             pod/coredns-56bfc489cf-27s5h    Started container coredns
-2m55s       Warning   BackOff             pod/coredns-56bfc489cf-27s5h    Back-off restarting failed container coredns in pod coredns-56bfc489cf-27s5h_vcluster-88007f70-942ea1d0(25e71e67-65fb-40be-af45-d9e6eb8cf115)
 ./bin/vcluster disconnect
-
 
 ```
 
