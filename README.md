@@ -203,7 +203,7 @@ Example Output:
 
 $ make uninstall
 Switched to context "kind-host-cluster".
-/home/davar/kind-vcluster-flux-playground/bin/vcluster delete vcluster-a -n vcluster-a
+/home/davar/Downloads/kind-vcluster-flux-playground/bin/vcluster delete vcluster-a -n vcluster-a
 info   Stopping docker proxy...
 info   Delete vcluster vcluster-a...
 done √ Successfully deleted virtual cluster vcluster-a in namespace vcluster-a
