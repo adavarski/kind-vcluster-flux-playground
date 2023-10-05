@@ -118,7 +118,11 @@ $ cat /etc/hosts|tail -n6
 # kind-vcluster-flux-playground
 172.17.0.200	tenant-b.traefik.local
 
- ./bin/vcluster list
+$ curl -sSLo ./bin/vcluster https://github.com/loft-sh/vcluster/releases/download/v0.16.0/vcluster-linux-amd64
+$ chmod +x ./bin/vcluster 
+$ ./bin/vcluster version
+
+$ ./bin/vcluster list
   
        NAME    | NAMESPACE  | STATUS  | VERSION | CONNECTED |            CREATED             |  AGE   | PRO  
   -------------+------------+---------+---------+-----------+--------------------------------+--------+------
